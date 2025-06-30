@@ -63,12 +63,12 @@ MoveCursor() {
     RIGHT := RIGHT + GetKeyState("d", "P")
   }
   
-  If (NORMAL_QUICK) {
-    caps_down := GetKeyState("Capslock", "P")
-    IF (caps_down == 0) {
-      EnterInsertMode()
-    }
-  }
+  ;If (NORMAL_QUICK) {
+  ;  caps_down := GetKeyState("Capslock", "P")
+  ;  IF (caps_down == 0) {
+  ;    EnterInsertMode()
+  ;  }
+  ;}
   
   If (NORMAL_MODE == false) {
     VELOCITY_X := 0
@@ -326,19 +326,19 @@ ScrollDownMore() {
 
 
 ; "FINAL" MODE SWITCH BINDINGS
-Home:: EnterNormalMode()
-Insert:: EnterInsertMode()
+;Home:: EnterNormalMode()
+;Insert:: EnterInsertMode()
 <#<!n:: EnterNormalMode()
 <#<!i:: EnterInsertMode()
 
 ; escape hatches
-+Home:: Send, {Home}
-+Insert:: Send, {Insert}
+;+Home:: Send, {Home}
+;+Insert:: Send, {Insert}
 ;FIXME
 ; doesn't turn caplsock off.
-^Capslock:: Send, {Capslock}
+;^Capslock:: Send, {Capslock}
 ; meh. good enough.
-^+Capslock:: SetCapsLockState, Off
+;^+Capslock:: SetCapsLockState, Off
 
 
 #If (NORMAL_MODE)
@@ -394,8 +394,8 @@ Insert:: EnterInsertMode()
   +[:: ScrollUpMore()
   End:: Click, Up
 #If (NORMAL_MODE && NORMAL_QUICK == false)
-  Capslock:: EnterInsertMode(true)
-  +Capslock:: EnterInsertMode()
+  ;Capslock:: EnterInsertMode(true)
+  ;+Capslock:: EnterInsertMode()
 ; Addl Vim hotkeys that conflict with WASD mode
 #If (NORMAL_MODE && WASD == false)
   <#<!r:: EnterWASDMode()
@@ -405,7 +405,7 @@ Insert:: EnterInsertMode()
   +S:: DoubleClickInsert()
 ; No shift requirements in normal quick mode
 #If (NORMAL_MODE && NORMAL_QUICK)
-  Capslock:: Return
+  ;Capslock:: Return
   m:: JumpMiddle()
   ,:: JumpMiddle2()
   .:: JumpMiddle3()
@@ -419,15 +419,15 @@ Insert:: EnterInsertMode()
 #If (INSERT_MODE)
   ; Normal (Quick) Mode
 #If (INSERT_MODE && INSERT_QUICK == false)
-  Capslock:: EnterNormalMode(true)
-  +Capslock:: EnterNormalMode()
+  ;Capslock:: EnterNormalMode(true)
+  ;+Capslock:: EnterNormalMode()
 #If (INSERT_MODE && INSERT_QUICK)
   ~Enter:: EnterNormalMode()
   ; Copy and return to Normal Mode
   ~^c:: EnterNormalMode()
   Escape:: EnterNormalMode()
-  Capslock:: EnterNormalMode()
-  +Capslock:: EnterNormalMode()
+  ;Capslock:: EnterNormalMode()
+  ;+Capslock:: EnterNormalMode()
 #If (NORMAL_MODE && WASD)
   <#<!r:: ExitWASDMode()
   ; Intercept movement keys
